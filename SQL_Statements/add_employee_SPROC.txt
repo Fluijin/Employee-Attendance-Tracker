@@ -1,0 +1,18 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_employee`(IN EmpID VARCHAR (10), 
+Lname VARCHAR (30), 
+Fname VARCHAR (30), 
+MI VARCHAR (5), 
+Nickname VARCHAR (15), 
+Sex CHAR (1), 
+Birthdate DATE, 
+Age INT (2), 
+Address VARCHAR (50), 
+Email VARCHAR (60), 
+ContactNo VARCHAR (11), 
+EmpType VARCHAR (15), 
+TeamName VARCHAR (10), 
+TeacherClass VARCHAR (30), 
+Password VARCHAR (30))
+BEGIN
+	INSERT INTO employee_tbl VALUES (EmpID, Lname, Fname, MI, Nickname, Sex, Birthdate, Age, Address, Email, ContactNo, EmpType, TeamName, TeacherClass, Password);
+END

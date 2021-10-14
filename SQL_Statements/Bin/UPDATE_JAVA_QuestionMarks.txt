@@ -1,0 +1,23 @@
+            String query = "UPDATE employee_tbl SET EmpID = ?, Lname = ?,  "
+                + "Fname = ?, MI = ?, Nickname = ?, Sex = ?, "
+                + "Birthdate = ?, Age = ?, Address = ?, "
+                + "Email = ?, ContactNo  = ?, EmpType = ?, "
+                + "TeamName = ?, TeacherClass = ?, Password  = ?"
+                + "WHERE EmpID = '"+tempID+"'";   
+
+            PreparedStatement ps = connect.prepareStatement(query);
+            ps.setString(1, EmpID);
+            ps.setString(2, Lname);
+            ps.setString(3, Fname);
+            ps.setString(4, MI);
+            ps.setString(5, Nickname);
+            ps.setString(6, Sex);
+            ps.setString(7, Birthdate);
+            ps.setString(8, Age);
+            ps.setString(9, Address);
+            ps.setString(10, Email);
+            ps.setString(11, ContactNo);
+            ps.setString(12, EmpType);
+            ps.setString(13, TeamName);
+            ps.setString(14, TeacherClass);
+            ps.setString(15, Password);

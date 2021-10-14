@@ -1,0 +1,12 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `attendance_log_view` AS
+    SELECT 
+        `attendancelog_tbl`.`EmpID` AS `EmpID`,
+        `attendancelog_tbl`.`Date` AS `Date`,
+        `attendancelog_tbl`.`TimeIn` AS `TimeIn`,
+        `attendancelog_tbl`.`TimeOut` AS `TimeOut`
+    FROM
+        `attendancelog_tbl`

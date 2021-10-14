@@ -1,0 +1,11 @@
+-- Most Working Hours 
+
+SELECT EmpID, TIMEDIFF(TimeOut, TimeIn) AS "Time Sum"
+FROM attendancelog_tbl
+WHERE NOT(TIMEDIFF(TimeOut, TimeIn) < 0);
+
+SELECT EmpID, TIMEDIFF(TimeOut, TimeIn) AS "Time Sum"
+FROM (	SELECT EmpID, TimeOut 
+		FROM attendancelog_tbl at
+		WHERE TimeOut < TimeIn) AS Test;
+-- Not applicable to EPRO because the working hours is fixed at 8 hours

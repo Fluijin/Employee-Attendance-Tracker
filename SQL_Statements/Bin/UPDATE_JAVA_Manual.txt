@@ -1,0 +1,64 @@
+    public void UpdateRecord(){
+        
+        try{
+            // empty fields checker
+            if(jTextFieldID.getText().equals("") ||
+               jTextFieldLname.getText().equals("") ||
+               jTextFieldFname.getText().equals("") ||
+               jTextFieldMI.getText().equals("") ||
+               jTextFieldAge.getText().equals("") ||
+               jTextFieldEmail.getText().equals("") ||
+               jTextFieldContact.getText().equals("") ||
+               jTextFieldAddress.getText().equals("")) 
+            {
+                JOptionPane.showMessageDialog(null, "Incomplete Fields!", "Warning!", 2);
+            } 
+            else if (jTextFieldBirthdate.getText().equals("YYYY-MM-DD") || jTextFieldBirthdate.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Birthdate Missing", "Warning!", 2);
+            }
+            else if(checkDate() == true)
+            {
+                JOptionPane.showMessageDialog(null, "Invalid Year!", "Warning!", 2);
+            }
+            else {
+            
+            Connection connect = DriverManager.getConnection(conn_string, username, password);
+            String EmpID = tempID;
+            String Lname = jTextFieldLname.getText();
+            String Fname = jTextFieldFname.getText();
+            String MI = jTextFieldMI.getText();
+            String Age = jTextFieldAge.getText();
+            String Sex = "M";
+                if(jRadioButtonFemale.isSelected()){
+                    sex = "F";
+                }
+            String Nickname = jTextFieldNickname.getText();
+            String Birthdate = jTextFieldBirthdate.getText();    
+            String Email = jTextFieldEmail.getText();
+            String ContactNo = jTextFieldContact.getText();
+            String EmpType = (String) jComboBoxEmpType.getSelectedItem();
+            String TeamName = (String) jComboBoxTeam.getSelectedItem();
+            String TeacherClass = (String) jComboBoxClass.getSelectedItem();
+            String Address = jTextFieldAddress.getText();
+            String Password = jTextFieldPassword.getText();
+                
+            String query = "UPDATE employee_tbl SET EmpID = ?, Lname = '"+Lname+"',  "
+                + "Fname = '"+Fname+"', MI = '"+MI+"', Nickname = '"+Nickname+"', Sex = '"+Sex+"', "
+                + "Birthdate = '"+Birthdate+"', Age = '"+Age+"' , Address = '"+Address+"' , "
+                + "Email = '"+Email+"', ContactNo  = '"+ContactNo+"', EmpType = '"+EmpType+"', "
+                + "TeamName = '"+TeamName+"', TeacherClass = '"+TeacherClass+"', Password  = '"+Password+"'"
+                + "WHERE EmpID = '"+EmpID+"'";
+            
+            PreparedStatement ps = connect.prepareStatement(query);
+            ps.setString(1, jTextFieldID.getText());
+            ps.executeUpdate();
+            ps.close();
+            
+            JOptionPane.showMessageDialog(null, "Record Updated");
+            }
+            } catch (SQLException ex) {
+                // ex.printStackTrace();
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Please Try Again!", "Warning!", 2);
+            }

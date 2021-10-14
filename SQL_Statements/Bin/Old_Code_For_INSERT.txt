@@ -1,0 +1,19 @@
+            
+            Statement stmt = (Statement) connect.createStatement();
+            String insertNewEmp = "INSERT INTO employee_tbl (EmpID, Lname, Fname, MI, Nickname, Sex, Birthdate, Age, Address, Email, ContactNo, EmpType, TeamName, TeacherClass)"
+            + " VALUES ("
+            + "'"+jTextFieldID.getText()+"',"
+            + "'"+jTextFieldLname.getText()+"',"
+            + "'"+jTextFieldFname.getText()+"',"
+            + "'"+jTextFieldMI.getText()+"',"
+            + "'"+jTextFieldNickname.getText()+"',"
+            + "'"+sex+"',"
+            + "'"+jTextFieldBirthdate.getText()+"',"
+            + "'"+jTextFieldAge.getText()+"',"
+            + "'"+jTextAreaAddress.getText()+"',"
+            + "'"+jTextFieldEmail.getText()+"',"
+            + "'"+jTextFieldContact.getText()+"',"
+            + "'"+empType+"',"
+            + "'"+team+"',"
+            + "'"+tClass+"')";
+            stmt.executeUpdate(insertNewEmp);

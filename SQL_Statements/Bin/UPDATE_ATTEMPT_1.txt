@@ -1,0 +1,57 @@
+            Connection connect = DriverManager.getConnection(conn_string, username, password);
+            PreparedStatement ps;
+            ps = connect.prepareStatement("SELECT * FROM employee_tbl WHERE EmpID = ?, Lname = ?,  "
+                + " Fname = ?, MI = ?, Nickname = ?, Sex = ?, "
+                + " Birthdate = ?, Age = ?, Address = ?, "
+                + " Email = ?, ContactNo  = ?, EmpType = ?, "
+                + " TeamName = ?, TeacherClass = ?, Password = ? ");
+            
+            ps.setString(1, jTextFieldID.getText());
+            ps.setString(2, jTextFieldLname.getText());
+            ps.setString(3, jTextFieldFname.getText());
+            ps.setString(4, jTextFieldMI.getText());
+            ps.setString(5, jTextFieldNickname.getText());
+            ps.setString(6, sex);
+                String sex = "M";
+                if(jRadioButtonFemale.isSelected()){
+                    sex = "F";
+                }
+            ps.setString(7, jTextFieldBirthdate.getText());
+            ps.setString(8, jTextFieldAge.getText());
+            ps.setString(9, jTextFieldAddress.getText());
+            ps.setString(10, jTextFieldEmail.getText());
+            ps.setString(11, jTextFieldContact.getText());
+            ps.setString(12, (String) jComboBoxEmpType.getSelectedItem());
+            ps.setString(13, (String) jComboBoxTeam.getSelectedItem());
+            ps.setString(14, (String) jComboBoxClass.getSelectedItem());
+            ps.setString(15, jTextFieldPassword.getText());
+            
+            ResultSet rs = ps.executeQuery();
+            
+                if(rs.next()){
+                    // Update record to employee_tbl (database) IF validated
+                    
+                    
+                    Statement stmt = (Statement) connect.createStatement();
+                    String updateData = "UPDATE employee_tbl SET EmpID = '"+jTextFieldID.getText()+"', Lname = '"+jTextFieldLname.getText()+"',  "
+                + " Fname = '"+jTextFieldFname.getText()+"', MI = '"+jTextFieldMI.getText()+"', Nickname = '"+jTextFieldNickname.getText()+"', Sex = '"+sex+"', "
+                + " Birthdate = '"+jTextFieldBirthdate.getText()+"', Age = '"+jTextFieldAge.getText()+"' , Address = '"+jTextFieldAddress.getText()+"' , "
+                + " Email = '"+jTextFieldEmail.getText()+"', ContactNo  = '"+jTextFieldContact.getText()+"', EmpType = '"+(String) jComboBoxEmpType.getSelectedItem()+"', "
+                + " TeamName = '"+(String) jComboBoxTeam.getSelectedItem()+"', TeacherClass = '"+(String) jComboBoxClass.getSelectedItem()+"', Password  = '"+jTextFieldPassword.getText()+"'"
+                + " WHERE EmpID = '"+tempID+"'";
+                    stmt.executeUpdate(updateData);
+                    stmt.close();
+                    
+                    JOptionPane.showMessageDialog(null,"Time Out Successful!");
+                }            
+            
+            ps.executeUpdate();
+            ps.close();
+            
+            JOptionPane.showMessageDialog(null, "Record Updated");
+            }
+            } catch (SQLException ex) {
+                // ex.printStackTrace();
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null, "Please Try Again!", "Warning!", 2);
+            }
